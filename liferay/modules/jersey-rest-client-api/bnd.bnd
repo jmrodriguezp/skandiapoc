@@ -1,0 +1,4 @@
+Bundle-Name: jersey-rest-client-api
+Bundle-SymbolicName: com.stefanini.osgi.services.jersey
+Bundle-Version: 1.0.0
+Export-Package: com.stefanini.osgi.services.jersey.*

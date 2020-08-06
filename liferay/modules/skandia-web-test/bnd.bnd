@@ -1,0 +1,4 @@
+Bundle-Name: skandia-web-test
+Bundle-SymbolicName: skandia.web.test
+Bundle-Version: 1.0.0
+Export-Package: skandia.web.test.constants

@@ -1,0 +1,5 @@
+Bundle-Name: jersey-rest-client-service
+Bundle-SymbolicName: com.stefanini.osgi.services.jersey.impl
+Bundle-Version: 1.0.0
+Import-Package: \
+*;resolution:=optional

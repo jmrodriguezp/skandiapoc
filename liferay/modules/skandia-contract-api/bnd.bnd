@@ -1,0 +1,4 @@
+Bundle-Name: skandia-contract-api
+Bundle-SymbolicName: co.com.skandia.services.contract
+Bundle-Version: 1.0.0
+Export-Package: co.com.skandia.services.contract.*
