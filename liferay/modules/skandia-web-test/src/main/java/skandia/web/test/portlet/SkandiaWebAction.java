@@ -30,6 +30,7 @@ public class SkandiaWebAction extends BaseMVCActionCommand {
 	
 	@Override
 	protected void doProcessAction(ActionRequest actionRequest, ActionResponse actionResponse) throws Exception {
+		
 		User user = (User) actionRequest.getAttribute(WebKeys.USER);
 		String firstName = user.getFirstName();
 		String lastName = user.getLastName();
