@@ -17,8 +17,6 @@ export class Service {
               userId: Liferay.ThemeDisplay.getUserId()
             },
             (obj: any) => {
-                console.log("Antes de resolve");
-                console.log(obj);
               resolve(obj);
             },
             (error: any)=>{

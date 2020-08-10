@@ -21,14 +21,6 @@ export class AppComponent implements OnInit{
 	affiliationForm: FormGroup;
 
 	constructor(private fb: FormBuilder, private service: Service) {
-		/* this.labels = {        
-			
-			configuration: Liferay.Language.get('configuration'),
-			
-			portletNamespace: Liferay.Language.get('portlet-namespace'),
-        	contextPath: Liferay.Language.get('context-path'),
-			portletElementId: Liferay.Language.get('portlet-element-id'),
-		} */
 		this.service.getUser().then(response => {
 			this.firstName = response.firstName;
 			this.lastName = response.lastName;
@@ -46,33 +38,28 @@ export class AppComponent implements OnInit{
 			productType: ['', [Validators.required]],
 			planType: ['', [Validators.required]],
 			agentType: ['', [Validators.required]],
-			tocs: ['', [Validators.required]]
+			tocs: [false, [Validators.requiredTrue]]
 		})
 	}
 
-	// Choose city using select dropdown
 	changeProductType(e:any) {
-		console.log(e.value)
 		this.productType.setValue(e.target.value, {
 		  onlySelf: true
 		})
 	  }
 
 	  changeplanType(e:any) {
-		console.log(e.value)
 		this.planType.setValue(e.target.value, {
 		  onlySelf: true
 		})
 
 	  }
 	  changeagentType(e:any) {
-		console.log(e.value)
 		this.agentType.setValue(e.target.value, {
 		  onlySelf: true
 		})
 	  }
-	
-	  // Getter method to access formcontrols
+
 	  get productType() {
 		return this.affiliationForm.get('productType');
 	  }
