@@ -33,7 +33,8 @@ export class AppComponent implements OnInit{
 		  alert("invalid form pt");
 		}else{
 			this.service.createContract(this.params).then(response => {
-				console.log(response);
+				alert("createContract 2");
+				console.log("response contracts ",response);
 			})
 		} 
 

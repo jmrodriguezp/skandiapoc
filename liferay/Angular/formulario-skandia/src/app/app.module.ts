@@ -5,13 +5,16 @@ import { AppComponent } from './app.component';
 
 import { NgSelectModule } from '@ng-select/ng-select';
 import { FormsModule } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms'
+import { ReactiveFormsModule } from '@angular/forms';
+
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
 	imports: [BrowserModule,
 		NgSelectModule,
 		FormsModule,
-		ReactiveFormsModule],
+		ReactiveFormsModule,
+		HttpClientModule],
 	declarations: [AppComponent],
 	entryComponents: [AppComponent],
 	bootstrap: [], // Don't bootstrap any component statically (see ngDoBootstrap() below)
