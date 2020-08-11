@@ -25,13 +25,19 @@ export class AppComponent implements OnInit{
 			this.firstName = response.firstName;
 			this.lastName = response.lastName;
 		})
+		
 	}
 
 	onSubmit() {
 		if (this.affiliationForm.invalid) {
 		  alert("invalid form pt");
+		}else{
+			this.service.createContract(this.params).then(response => {
+				console.log(response);
+			})
 		} 
-		}
+
+	}
 	  
 	ngOnInit() {
 		this.affiliationForm = this.fb.group({
@@ -39,10 +45,12 @@ export class AppComponent implements OnInit{
 			planType: ['', [Validators.required]],
 			agentType: ['', [Validators.required]],
 			tocs: [false, [Validators.requiredTrue]]
-		})
+		});
+		
 	}
 
 	changeProductType(e:any) {
+		console.log(this.params);
 		this.productType.setValue(e.target.value, {
 		  onlySelf: true
 		})

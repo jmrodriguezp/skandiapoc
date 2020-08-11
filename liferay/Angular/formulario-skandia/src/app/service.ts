@@ -25,4 +25,24 @@ export class Service {
           );
         })
     }
+    createContract(params:any): Promise<any>{
+
+      var url = Liferay.PortletURL.createURL(Liferay.currentURL);
+		  url.setLifecycle(Liferay.PortletURL.RESOURCE_PHASE);
+		  url.setPortletId(params.portletNamespace.slice(1, -1));
+		  url.setResourceId("addContract");
+         
+      return new Promise((resolve,reject) =>{
+        Liferay.Service(
+          url.toString(),
+          { },
+          (obj: any) => {
+            resolve(obj);
+          },
+          (error: any)=>{
+              reject(error);
+          }
+        );
+      })
+  }
 }

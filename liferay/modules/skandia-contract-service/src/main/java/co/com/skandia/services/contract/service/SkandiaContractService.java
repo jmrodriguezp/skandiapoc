@@ -1,5 +1,11 @@
 package co.com.skandia.services.contract.service;
 
+import com.liferay.expando.kernel.model.ExpandoBridge;
+import com.liferay.portal.kernel.jsonwebservice.JSONWebService;
+import com.liferay.portal.kernel.model.User;
+import com.liferay.portal.kernel.security.access.control.AccessControlled;
+import com.liferay.portal.kernel.security.auth.PrincipalThreadLocal;
+import com.liferay.portal.kernel.service.UserLocalServiceUtil;
 import com.liferay.portal.kernel.util.PropsUtil;
 import com.stefanini.osgi.services.jersey.api.JerseyRestClientApi;
 import com.stefanini.osgi.services.jersey.api.error.JerseyRestException;
@@ -18,9 +24,13 @@ import co.com.skandia.services.contract.model.CreateContractRequest;
 @Component(
 	immediate = true,
 	property = {
+			"json.web.service.context.name=skandiaJsonService",
+			"json.web.service.context.path=Contract"
 	},
 	service = SkandiaContractApi.class
 )
+@AccessControlled
+@JSONWebService
 public class SkandiaContractService implements SkandiaContractApi {
 	
 	@Reference
@@ -28,6 +38,7 @@ public class SkandiaContractService implements SkandiaContractApi {
 	
 	@Override
 	public String createContract(String id, String firstName, String lastName, String document, String typeDocument, String ip, String numberPhone, String numberMobile, String residenceAddress, String residencePleace, String email) {
+		
 		CreateContractRequest request = new CreateContractRequest();
 		request.setId(id);
 		request.setFirstName(firstName);
@@ -55,8 +66,31 @@ public class SkandiaContractService implements SkandiaContractApi {
 		} catch (JerseyRestException e) {
 			return e.getMessage();
 		}
-	
 	}
 	
+	@Override
+	public String createContractByUser() {
+		try {
+			String userIdS = PrincipalThreadLocal.getName();
+			Long userId = Long.parseLong(userIdS);
+			User user= UserLocalServiceUtil.getUserById(userId);
+			String firstName = user.getFirstName();
+			String lastName = user.getLastName();
+			String ip = user.getLoginIP();
+			String email = user.getEmailAddress();
+			ExpandoBridge eb = user.getExpandoBridge();
+			String id = (String)eb.getAttribute("id");
+			String document = (String)eb.getAttribute("document");
+			String typeDocument = (String)eb.getAttribute("typeDocument");
+			String numberPhone = (String)eb.getAttribute("numberPhone");
+			String numberMobile = (String)eb.getAttribute("numberMobile");
+			String residenceAddress = (String)eb.getAttribute("residenceAddress");
+			String residencePleace = (String)eb.getAttribute("residencePleace");
+			return this.createContract(id, firstName, lastName, document, typeDocument, ip, numberPhone, numberMobile, residenceAddress, residencePleace, email);
+		} catch (Exception e) {
+			return e.getMessage();
+		}
+	
+	}
 
 }

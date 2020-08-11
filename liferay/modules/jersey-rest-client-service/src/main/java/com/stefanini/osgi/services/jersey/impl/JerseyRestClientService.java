@@ -39,14 +39,12 @@ public class JerseyRestClientService  implements JerseyRestClientApi{
 		Builder invocationBuilder=webTarget.request(MediaType.APPLICATION_JSON);
 		createHeaders(headers, invocationBuilder);
 		Response response  = invocationBuilder.post(Entity.entity(requestObject, MediaType.APPLICATION_JSON));
-		
 		if(response.getStatus()==200  ) {
 			String s=response.readEntity(String.class);
 			return s;
 		}else {
 			throw JerseyRestExceptionProvider.generateIvalidReponse(response.getStatus(), response.readEntity(String.class));
 		}
-		
 	}
 	
 	public void createHeaders( Map<String, Object> headers,Builder invocationBuilder) {
