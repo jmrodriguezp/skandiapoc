@@ -1,7 +1,7 @@
 <div class="col-lg-6 mx-auto">
-    <h1 class="text-center">Affiliation - New Contract</h1>
+    <h1 class="text-center"> {{params.configuration.portletInstance.titulo}}</h1>
 
-    <form (ngSubmit)="onSubmit()" [formGroup]="affiliationForm" #myAffiliationform="ngForm">
+    <form *ngIf="respuesta==''" (ngSubmit)="onSubmit()" [formGroup]="affiliationForm" #myAffiliationform="ngForm">
         <div class="form-group">
             <label class="control-label" for="firstName">
         First Name
@@ -27,49 +27,50 @@
         <div class="form-group">
             <label for="" class="control-label"></label> Product
             <select name="productType" id="productType" class="form-select" (change)="changeProductType($event)" formControlName="productType">
-                <option value="" disabled selected>Choose Product</option>
+                <option value="" disabled selected>Seleccione Producto</option>
                 <option value="MFUND">MultiFund - Pensiones Voluntarias</option>
                 <option value="SIPEN">Seguro de Pensiones Individuales</option>
             </select>
             <!-- error block -->
             <div class="error" *ngIf="affiliationForm.get('productType').hasError('required') && myAffiliationform.submitted">
-                Required field.
+                Campo requerido.
             </div>
         </div>
         <div class="form-group">
             <label for="" class="control-label"></label> Plan
             <select name="planType" id="planType" class="form-select" (change)="changeplanType($event)" formControlName="planType">
-                <option value="" disabled selected>Choose Plan</option>
+                <option value="" disabled selected>Seleccone Plan</option>
                 <option value="SKAN">Skandia Inversion</option>
                 <option value="SKIN">Skandia Inversion Skin</option>
                 <option value="SKUN">Skandia Inversion Plus</option>
             </select>
             <div class="error" *ngIf="affiliationForm.get('planType').hasError('required') && myAffiliationform.submitted">
-                Required field.
+                Campo requerido.
             </div>
         </div>
         <div class="form-group">
             <label for="" class="control-label"></label> Agent
             <select name="agentType" id="agentType" class="form-select" (change)="changeagentType($event)" formControlName="agentType">
-                <option value="" disabled selected>Choose Agent</option>
+                <option value="" disabled selected>Seleccione  agente</option>
                 <option value="234">Financial Planner 1</option>
                 <option value="235">Financial Planner 2</option>
             </select>
             <div class="error" *ngIf="affiliationForm.get('agentType').hasError('required') && myAffiliationform.submitted">
-                Required field.
+                Campo requerido.
             </div>
         </div>
         <div class="form-group">
             <p name="tacs">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Necessitatibus error magnam, sed dignissimos ipsa expedita vero est sunt voluptates. Debitis commodi voluptate dolorum tempora, quasi labore soluta assumenda enim excepturi?
+                {{params.configuration.system.terminos}}
+                
             </p>
         </div>
         <div class="form-group">
             <label><input type="checkbox" id="tocs" value="first_checkbox" formControlName="tocs"/> 
-			I accept terms and conditions
+			Acepto términos y condiciones
             </label>
             <div class="error" *ngIf="affiliationForm.get('tocs').hasError('required') && myAffiliationform.submitted">
-                Required field.
+                Campo requerido.
             </div>
             <br />
             <!-- <button type="submit" class="btn btn-principal">
@@ -80,4 +81,18 @@
             </div>
         </div>
     </form>
+    <div  *ngIf="respuesta!=''" >
+    <p>
+        <b>Number:</b>{{respuesta.ContractRequest.Number}}
+    </p>
+    <p>
+        <b>PlanCode:</b>{{respuesta.ContractRequest.PlanCode}}
+    </p>
+    <p>
+        <b>ProductCode:</b>{{respuesta.ContractRequest.ProductCode}}
+    </p>
+    <p>
+        <b>Reference:</b>{{respuesta.ContractRequest.Reference}}
+    </p>
+    </div>
 </div>

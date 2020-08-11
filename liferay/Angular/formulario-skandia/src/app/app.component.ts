@@ -16,7 +16,7 @@ export class AppComponent implements OnInit{
 	labels: any;
 	firstName: any;
 	lastName: any;
-	
+	respuesta: any;
 
 	affiliationForm: FormGroup;
 
@@ -25,16 +25,16 @@ export class AppComponent implements OnInit{
 			this.firstName = response.firstName;
 			this.lastName = response.lastName;
 		})
-		
+		this.respuesta="";
 	}
 
 	onSubmit() {
 		if (this.affiliationForm.invalid) {
-		  alert("invalid form pt");
+		 // alert("invalid form pt");
 		}else{
 			this.service.createContract(this.params).then(response => {
-				alert("createContract 2");
-				console.log("response contracts ",response);
+				this.respuesta=response;
+				console.log(response);
 			})
 		} 
 
