@@ -7,6 +7,7 @@ import com.liferay.portal.kernel.security.access.control.AccessControlled;
 import com.liferay.portal.kernel.security.auth.PrincipalThreadLocal;
 import com.liferay.portal.kernel.service.UserLocalServiceUtil;
 import com.liferay.portal.kernel.util.PropsUtil;
+import com.skandia.trasaccion.log.api.TransaccionLogApi;
 import com.stefanini.osgi.services.jersey.api.JerseyRestClientApi;
 import com.stefanini.osgi.services.jersey.api.error.JerseyRestException;
 
@@ -36,8 +37,13 @@ public class SkandiaContractService implements SkandiaContractApi {
 	@Reference
 	private JerseyRestClientApi restClient;
 	
+	@Reference
+	private TransaccionLogApi transaccionLog;
+	
 	@Override
 	public String createContract(String id, String firstName, String lastName, String document, String typeDocument, String ip, String numberPhone, String numberMobile, String residenceAddress, String residencePleace, String email) {
+		
+		transaccionLog.info("Creando contrato");
 		
 		CreateContractRequest request = new CreateContractRequest();
 		request.setId(id);
@@ -62,8 +68,12 @@ public class SkandiaContractService implements SkandiaContractApi {
 		headers.put("Ocp-Apim-Subscription-Key", ContractSubscriptionKey);
 		
 		try {
-			return restClient.postBasicAuthentication(urlService, request.getJsonString(), headers, user, password);
+			String reponse=restClient.postBasicAuthentication(urlService, request.getJsonString(), headers, user, password);
+			transaccionLog.info("Contrato creado correctamente");
+			return reponse;
+			
 		} catch (JerseyRestException e) {
+			transaccionLog.info("Fallo al crear elcontrato",e);
 			return e.getMessage();
 		}
 	}

@@ -5,4 +5,5 @@ dependencies {
 	compileOnly group: "javax.servlet", name: "javax.servlet-api", version: "3.0.1"
 	compileOnly  project(":modules:skandia-contract-api")
 	compileOnly  project(":modules:jersey-rest-client-api")
+	compileOnly  project(":modules:transaccion-log-api")
 }

@@ -1,0 +1,4 @@
+Bundle-Name: transaccion-log-api
+Bundle-SymbolicName: com.skandia.trasaccion.log
+Bundle-Version: 1.0.0
+Export-Package: com.skandia.trasaccion.log.api

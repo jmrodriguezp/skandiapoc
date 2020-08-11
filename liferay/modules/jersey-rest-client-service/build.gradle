@@ -3,4 +3,5 @@ dependencies {
 	compileInclude group: "org.glassfish.jersey.core", name: "jersey-client", version: "2.25.1"
 	compileInclude group: "org.glassfish.jersey.media", name: "jersey-media-json-jackson", version: "2.25.1"
 	compileOnly  project(":modules:jersey-rest-client-api")
+	compileOnly  project(":modules:transaccion-log-api")
 }

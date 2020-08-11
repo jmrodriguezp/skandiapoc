@@ -1,0 +1,3 @@
+Bundle-Name: transaccion-log-service
+Bundle-SymbolicName: com.skandia.trasaccion.log.service
+Bundle-Version: 1.0.0
