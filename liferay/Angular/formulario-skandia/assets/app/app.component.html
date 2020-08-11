@@ -25,36 +25,43 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="" class="control-label"></label> Product
+            <label for="" class="control-label">Product</label> 
+            <div>
             <select name="productType" id="productType" class="form-select" (change)="changeProductType($event)" formControlName="productType">
                 <option value="" disabled selected>Seleccione Producto</option>
                 <option value="MFUND">MultiFund - Pensiones Voluntarias</option>
                 <option value="SIPEN">Seguro de Pensiones Individuales</option>
             </select>
+            </div> 
             <!-- error block -->
             <div class="error" *ngIf="affiliationForm.get('productType').hasError('required') && myAffiliationform.submitted">
                 Campo requerido.
             </div>
+             
         </div>
         <div class="form-group">
-            <label for="" class="control-label"></label> Plan
+            <label for="" class="control-label">Plan</label> 
+            <div>
             <select name="planType" id="planType" class="form-select" (change)="changeplanType($event)" formControlName="planType">
-                <option value="" disabled selected>Seleccone Plan</option>
+                <option value="" disabled selected>Seleccione Plan</option>
                 <option value="SKAN">Skandia Inversion</option>
                 <option value="SKIN">Skandia Inversion Skin</option>
                 <option value="SKUN">Skandia Inversion Plus</option>
             </select>
+            </div>
             <div class="error" *ngIf="affiliationForm.get('planType').hasError('required') && myAffiliationform.submitted">
                 Campo requerido.
             </div>
         </div>
         <div class="form-group">
-            <label for="" class="control-label"></label> Agent
+            <label for="" class="control-label">Agent</label> 
+            <div>
             <select name="agentType" id="agentType" class="form-select" (change)="changeagentType($event)" formControlName="agentType">
                 <option value="" disabled selected>Seleccione  agente</option>
                 <option value="234">Financial Planner 1</option>
                 <option value="235">Financial Planner 2</option>
             </select>
+            </div>
             <div class="error" *ngIf="affiliationForm.get('agentType').hasError('required') && myAffiliationform.submitted">
                 Campo requerido.
             </div>
