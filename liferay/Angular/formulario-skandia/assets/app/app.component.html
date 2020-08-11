@@ -1,4 +1,4 @@
-<div class="col-lg-6 mx-auto">
+<div class="col-lg-6 mx-auto formularios-skandia-portlet">
     <h1 class="text-center"> {{params.configuration.portletInstance.titulo}}</h1>
 
     <form *ngIf="respuesta==''" (ngSubmit)="onSubmit()" [formGroup]="affiliationForm" #myAffiliationform="ngForm">
@@ -62,7 +62,7 @@
         <div class="form-group">
             <p name="tacs">
                 {{params.configuration.system.terminos}}
-                
+
             </p>
         </div>
         <div class="form-group">
@@ -81,18 +81,18 @@
             </div>
         </div>
     </form>
-    <div  *ngIf="respuesta!=''" >
-    <p>
-        <b>Number:</b>{{respuesta.ContractRequest.Number}}
-    </p>
-    <p>
-        <b>PlanCode:</b>{{respuesta.ContractRequest.PlanCode}}
-    </p>
-    <p>
-        <b>ProductCode:</b>{{respuesta.ContractRequest.ProductCode}}
-    </p>
-    <p>
-        <b>Reference:</b>{{respuesta.ContractRequest.Reference}}
-    </p>
+    <div *ngIf="respuesta!=''">
+        <p>
+            <b>Number:</b>{{respuesta.ContractRequest.Number}}
+        </p>
+        <p>
+            <b>PlanCode:</b>{{respuesta.ContractRequest.PlanCode}}
+        </p>
+        <p>
+            <b>ProductCode:</b>{{respuesta.ContractRequest.ProductCode}}
+        </p>
+        <p>
+            <b>Reference:</b>{{respuesta.ContractRequest.Reference}}
+        </p>
     </div>
 </div>
